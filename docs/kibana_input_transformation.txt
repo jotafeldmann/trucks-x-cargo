@@ -1,0 +1,35 @@
+
+"location_origin": {
+    "type": "geo_point"
+  },
+  "location_destination": {
+    "type": "geo_point"
+  }
+
+
+
+
+
+{
+  "description": "Convert two lat and lng fields to geo position point",
+  "processors": [
+    {
+      "set": {
+        "field": "location_origin",
+        "value": {
+          "lat": "{{origin_lat}}",
+          "lon": "{{origin_lng}}"
+        }
+      }
+    },
+    {
+      "set": {
+        "field": "location_destination",
+        "value": {
+          "lat": "{{destination_lat}}",
+          "lon": "{{destination_lng}}"
+        }
+      }
+    }
+  ]
+}
