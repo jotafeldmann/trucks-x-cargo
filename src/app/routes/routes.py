@@ -31,13 +31,13 @@ def _get_routes_simple_with_sorted_list(trucks: [Truck], cargos: [Cargo]) -> [Sh
         distance, closest_truck = closest_trucks_list.peekitem(0)
         yield ShortestRoute(cargo, closest_truck, distance)
 
-def designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick = 0, max_cargos_per_truck = 1):
+def _designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick = 0, max_cargos_per_truck = 1):
     distance, closest_truck = closest_trucks_list.peekitem(cargo_truck_to_pick)
 
     if trucks_designated.get(closest_truck):
 
         if len(trucks_designated[closest_truck].get('cargos').keys()) == max_cargos_per_truck:
-            return designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick + 1)
+            return _designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick + 1)
         
         trucks_designated[closest_truck].get('cargos').setdefault(cargo, distance)
     else:
@@ -57,7 +57,7 @@ def _get_routes_with_sorted_list_and_max_cargo_per_truck(trucks: [Truck], cargos
             cargo_distance_to_truck = get_distance(cargo.origin_location, truck.location)
             closest_trucks_list[cargo_distance_to_truck] = truck
         
-        distance, closest_truck = designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick, max_cargos_per_truck)
+        distance, closest_truck = _designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick, max_cargos_per_truck)
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
