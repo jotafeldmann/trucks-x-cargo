@@ -1,5 +1,5 @@
 import math
-import bisect
+from sortedcontainers import SortedDict
 from dataclasses import dataclass
 
 from models.truck import Truck
@@ -33,13 +33,13 @@ def _get_routes_simple(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
 def _get_routes_with_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos=1) -> [ShortestRoute]:
 
     for cargo in cargos:
-        closest_truck__list = []
+        closest_trucks_list = SortedDict()
 
         for truck in trucks:
             cargo_distance_to_truck = get_distance(cargo.origin_location, truck.location)
-            closest_truck__list
-
+            closest_trucks_list[cargo_distance_to_truck] = truck
+        
+        distance, closest_truck = closest_trucks_list.peekitem(0)
         yield ShortestRoute(cargo, closest_truck, distance)
 
-
-get_routes = _get_routes_simple
+get_routes = _get_routes_with_max_cargo_per_truck
