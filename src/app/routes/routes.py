@@ -2,7 +2,7 @@ import math
 from sortedcontainers import SortedDict
 from app.models.truck import Truck
 from app.models.cargo import Cargo
-from utils.geolocation import get_distance, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
+from utils.geolocation import get_distance, fetch_distance_from_provider, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
 from app.routes.shortest_route import ShortestRoute
 
 def _get_routes_simple(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
@@ -61,4 +61,22 @@ def _get_routes_with_sorted_order_and_max_cargo_per_truck(trucks: [Truck], cargo
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
-get_routes = _get_routes_with_sorted_order_and_max_cargo_per_truck
+
+def _get_routes_with_sorted_order_and_max_cargo_per_truck_and_google_routes(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1) -> [ShortestRoute]:
+
+    trucks_designated = {}
+
+    for cargo in cargos:
+        closest_trucks_list = SortedDict()
+        cargo_truck_to_pick = 0
+
+        for truck in trucks:
+            cargo_distance_to_truck = fetch_distance_from_provider(cargo.origin_location, truck.location)
+            closest_trucks_list[cargo_distance_to_truck] = truck
+        
+        distance, closest_truck = _designate_cargo_for_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick, max_cargos_per_truck)
+
+        yield ShortestRoute(cargo, closest_truck, distance)
+
+
+get_routes = _get_routes_with_sorted_order_and_max_cargo_per_truck_and_google_routes
