@@ -7,3 +7,6 @@ env/exit:
 .phony: run
 run:
 	python main.py
+
+run/remote:
+	python main.py --remote google

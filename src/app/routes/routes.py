@@ -79,4 +79,5 @@ def _get_routes_with_sorted_order_and_max_cargo_per_truck_and_google_routes(truc
         yield ShortestRoute(cargo, closest_truck, distance)
 
 
-get_routes = _get_routes_with_sorted_order_and_max_cargo_per_truck_and_google_routes
+get_routes_local = _get_routes_with_sorted_order_and_max_cargo_per_truck
+get_routes_remote = _get_routes_with_sorted_order_and_max_cargo_per_truck_and_google_routes

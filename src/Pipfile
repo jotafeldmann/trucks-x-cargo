@@ -9,6 +9,7 @@ verify_ssl = true
 geopy = "*"
 sortedcontainers = "*"
 requests = "*"
+argparse = "*"
 
 [requires]
 python_version = "3.8"
