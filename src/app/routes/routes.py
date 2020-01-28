@@ -19,7 +19,7 @@ def _get_routes_simple(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
-def _get_routes_simple_with_sorted_list(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
+def _get_routes_simple_with_sorted_order(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
 
     for cargo in cargos:
         closest_trucks_list = SortedDict()
@@ -45,7 +45,7 @@ def _designate_cargo_for_truck_from_list(cargo, trucks_designated, closest_truck
 
     return distance, closest_truck
 
-def _get_routes_with_sorted_list_and_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1) -> [ShortestRoute]:
+def _get_routes_with_sorted_order_and_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1) -> [ShortestRoute]:
 
     trucks_designated = {}
 
@@ -61,4 +61,4 @@ def _get_routes_with_sorted_list_and_max_cargo_per_truck(trucks: [Truck], cargos
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
-get_routes = _get_routes_with_sorted_list_and_max_cargo_per_truck
+get_routes = _get_routes_with_sorted_order_and_max_cargo_per_truck
