@@ -30,6 +30,9 @@ class Cargo:
         self.destination_city = destination_city
         self.destination_state = destination_state
         self.destination_location = GeoPoint(destination_latitude, destination_longitude)
+
+    def __hash__(self):
+        return hash((self.destination_location, self.origin_location))
         
         
     def get_route_total_length(self):

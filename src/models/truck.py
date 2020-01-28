@@ -13,4 +13,7 @@ class Truck:
         self.city = city
         self.state = state
         self.location = GeoPoint(latitude, longitude)
+
+    def __hash__(self):
+        return hash((self.company, self.city, self.state, self.location.__hash__()))
         
