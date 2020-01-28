@@ -25,7 +25,7 @@ def fetch_distance_from_provider(geo_point_1, geo_point_2):
     url = 'https://maps.googleapis.com/maps/api/distancematrix/json'
     key = os.environ['GOOGLE_API_KEY']
     try:
-        request = requests.get('{}?units=imperial&origins={},{}&destinations={},{}&key={}'
+        request = requests.get('{}?units=metric&origins={},{}&destinations={},{}&key={}'
             .format(url, geo_point_1.latitude, geo_point_1.longitude, geo_point_2.latitude, geo_point_2.longitude, key))
         json = request.json()
         return json.get('rows')[0].get('elements')[0].get('distance').get('value')
