@@ -1,6 +1,6 @@
 from utils.input import get_trucks_data, get_cargos_data
-from models.truck import Truck
-from models.cargo import Cargo
+from app.models.truck import Truck
+from app.models.cargo import Cargo
 from app.routes.routes import get_routes
 
 def load_data():

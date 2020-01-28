@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from models.cargo import Cargo
-from models.truck import Truck
+from app.models.cargo import Cargo
+from app.models.truck import Truck
 
 @dataclass
 class ShortestRoute:

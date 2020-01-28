@@ -1,7 +1,7 @@
 import math
 from sortedcontainers import SortedDict
-from models.truck import Truck
-from models.cargo import Cargo
+from app.models.truck import Truck
+from app.models.cargo import Cargo
 from utils.geolocation import get_distance, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
 from app.routes.shortest_route import ShortestRoute
 
