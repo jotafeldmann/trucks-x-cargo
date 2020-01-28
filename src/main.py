@@ -1,8 +1,12 @@
 from utils.input import get_trucks_data, get_cargos_data
 from models.truck import Truck
+from models.cargo import Cargo
 
-rows = get_trucks_data()
+truck_rows = get_trucks_data()
+trucks = [[Truck(**row)] for row in truck_rows]
 
-truckList = [[Truck(**row)] for row in rows]
+cargo_rows = get_cargos_data()
+cargos = [[Cargo(**row)] for row in cargo_rows]
 
-print(truckList[0])
+print(cargos[0])
+

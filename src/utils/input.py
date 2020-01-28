@@ -17,7 +17,7 @@ _files_to_read = {
     },
     'cargos': {
         'path': './../input/cargo.csv',
-        'fields_order': ['product', 'origin_city', 'origin_state', 'origin_lat', 'origin_lon', 'destination_city', 'destination_state', 'destination_lat', 'destination_lon']
+        'fields_order': ['product', 'origin_city', 'origin_state', 'origin_latitude', 'origin_longitude', 'destination_city', 'destination_state', 'destination_latitude', 'destination_longitude']
     }
 }
 
