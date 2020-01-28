@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from utils.geolocation import GeoPoint
+from utils.geolocation import GeoPoint, get_distance
 
 @dataclass
 class Cargo:
@@ -30,4 +30,8 @@ class Cargo:
         self.destination_city = destination_city
         self.destination_state = destination_state
         self.destination_location = GeoPoint(destination_latitude, destination_longitude)
+        
+        
+    def get_route_total_length(self):
+        return get_distance(self.origin_location, self.destination_location)
         
