@@ -16,7 +16,7 @@ def print_routes(routes: [ShortestRoute]) -> None:
     print('Product, Truck Company, Distance')
     [[print(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)] for route in routes]
 
-def get_routes(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
+def _get_routes_simple(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
     for cargo in cargos:
         closest_truck = None
         distance = EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
@@ -30,7 +30,7 @@ def get_routes(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
-def get_routes_with_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos=1) -> [ShortestRoute]:
+def _get_routes_with_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos=1) -> [ShortestRoute]:
 
     for cargo in cargos:
         closest_truck__list = []
@@ -40,3 +40,6 @@ def get_routes_with_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_ca
             closest_truck__list
 
         yield ShortestRoute(cargo, closest_truck, distance)
+
+
+get_routes = _get_routes_simple
