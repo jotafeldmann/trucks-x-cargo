@@ -9,7 +9,7 @@ def load_data():
     return trucks, cargos
 
 def print_routes(routes):
-    print('Product, Truck Company, Distance')
+    print('Cargo, Truck Company, Distance')
     [[print(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)] for route in routes]
 
 def main():
