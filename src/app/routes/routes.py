@@ -1,20 +1,9 @@
 import math
 from sortedcontainers import SortedDict
-from dataclasses import dataclass
-
 from models.truck import Truck
 from models.cargo import Cargo
 from utils.geolocation import get_distance, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
-
-@dataclass
-class ShortestRoute:
-    cargo: Cargo
-    closest_truck: Truck
-    distance: float
-
-def print_routes(routes: [ShortestRoute]) -> None:
-    print('Product, Truck Company, Distance')
-    [[print(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)] for route in routes]
+from app.routes.shortest_route import ShortestRoute
 
 def _get_routes_simple(trucks: [Truck], cargos: [Cargo]) -> [ShortestRoute]:
     for cargo in cargos:
@@ -52,9 +41,7 @@ def designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, car
         
         trucks_designated[closest_truck].get('cargos').setdefault(cargo, distance)
     else:
-        trucks_designated.setdefault(closest_truck, { 'cargos' : {
-            cargo: distance
-        } })
+        trucks_designated[closest_truck] = { 'cargos': { cargo: distance } }
 
     return distance, closest_truck
 
@@ -73,12 +60,5 @@ def _get_routes_with_sorted_list_and_max_cargo_per_truck(trucks: [Truck], cargos
         distance, closest_truck = designate_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick, max_cargos_per_truck)
 
         yield ShortestRoute(cargo, closest_truck, distance)
-
-    
-    print('\nCounting companies and cargos')
-    for t in trucks_designated:
-        print(t.company, len(trucks_designated[t].get('cargos').keys()))
-    
-    
 
 get_routes = _get_routes_with_sorted_list_and_max_cargo_per_truck
