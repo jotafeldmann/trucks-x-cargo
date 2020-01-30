@@ -1,3 +1,6 @@
+#!/usr/bin/python3.8
+# Python version: 3.8
+
 import argparse
 from app.models.cargo import Cargo
 from app.models.truck import Truck
