@@ -3,6 +3,7 @@ from geopy.distance import distance
 import requests
 import os
 
+PROVIDER_KEY_NAME = 'GOOGLE_API_KEY'
 EARTH_CIRCUMFERENCE_KM = 40000
 EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS = EARTH_CIRCUMFERENCE_KM
 PRECISION_DECIMALS_FOR_KM = 0
@@ -30,7 +31,7 @@ def get_distance(geo_point_1, geo_point_2):
 
 def fetch_distance_from_provider(geo_point_1, geo_point_2):
     url = 'https://maps.googleapis.com/maps/api/distancematrix/json'
-    key = os.environ['GOOGLE_API_KEY']
+    key = os.environ[PROVIDER_KEY_NAME]
     try:
         request = requests.get('{}?units=metric&origins={},{}&destinations={},{}&key={}'
             .format(url, geo_point_1.latitude, geo_point_1.longitude, geo_point_2.latitude, geo_point_2.longitude, key))

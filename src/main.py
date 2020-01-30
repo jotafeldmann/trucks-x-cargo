@@ -1,12 +1,13 @@
-from utils.input import get_trucks_data, get_cargos_data
-from app.models.truck import Truck
-from app.models.cargo import Cargo
-from app.routes.routes import get_routes_local, get_routes_remote
 import argparse
+from app.models.cargo import Cargo
+from app.models.truck import Truck
+from app.routes.routes import get_routes_local, get_routes_remote
+from utils.geolocation import PROVIDER_KEY_NAME
+from utils.input import get_trucks_data, get_cargos_data
 
 def parse_arguments():
     parser = argparse.ArgumentParser("make run")
-    parser.add_argument("--remote", required=False, help="Use Google Routes provider to calculate distances, please set env var GOOGLE_API_KEY")
+    parser.add_argument("--remote", required=False, help="Use Google Routes provider to calculate distances, please set env var {}".format(PROVIDER_KEY_NAME))
     return parser.parse_args()
 
 def load_data():
