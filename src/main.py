@@ -20,10 +20,8 @@ def print_routes(routes):
 
 def main():
     args = parse_arguments()
+    get_routes = get_routes_remote if args.remote else get_routes_local
     trucks, cargos = load_data()
-    get_routes = get_routes_local
-    if args.remote:
-        get_routes = get_routes_remote
     routes = get_routes(trucks, cargos)
     print_routes(routes)
 
