@@ -1,10 +1,11 @@
 import math
 from functools import partial
 from sortedcontainers import SortedDict
+
 from app.models.cargo import Cargo
 from app.models.truck import Truck
 from app.routes.shortest_route import ShortestRoute
-from utils.geolocation import get_distance, fetch_distance_from_provider, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
+from utils.geolocation import get_distance, fetch_distance_from_provider, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS, GeoList
 
 def _designate_cargo_for_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick = 0, max_cargos_per_truck = 1):
     distance, closest_truck = closest_trucks_list.peekitem(cargo_truck_to_pick)
@@ -39,6 +40,11 @@ def _get_routes_with_sorted_order_and_max_cargo_per_truck(trucks: [Truck], cargo
 def _get_routes_with_kdtree_and_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1, get_distance=get_distance) -> [ShortestRoute]:
 
     trucks_designated = {}
+    g = GeoList([[truck.location.latitude, truck.location.longitude] for truck in trucks  ])
+    latitude = cargos[0].origin_location.latitude
+    longitude = cargos[0].origin_location.longitude
+    print(trucks[g.query([ latitude, longitude ])[1]])
+    exit()
 
     for cargo in cargos:
         closest_trucks_list = SortedDict()

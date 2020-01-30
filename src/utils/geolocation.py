@@ -1,7 +1,8 @@
-from dataclasses import dataclass
-from geopy.distance import distance
-import requests
 import os
+import requests
+from dataclasses import dataclass
+from scipy.spatial import KDTree
+from geopy.distance import distance
 
 PROVIDER_KEY_NAME = 'GOOGLE_API_KEY'
 EARTH_CIRCUMFERENCE_KM = 40000
@@ -41,4 +42,8 @@ def fetch_distance_from_provider(geo_point_1, geo_point_2):
         print(err)
         print('Using get_distance')
         return get_distance(geo_point_1, geo_point_2)
+
+class GeoList(KDTree):
+    pass
+
 
