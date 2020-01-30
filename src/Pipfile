@@ -10,6 +10,7 @@ geopy = "*"
 sortedcontainers = "*"
 requests = "*"
 argparse = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.8"

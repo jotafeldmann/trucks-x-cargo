@@ -36,7 +36,22 @@ def _get_routes_with_sorted_order_and_max_cargo_per_truck(trucks: [Truck], cargo
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
+def _get_routes_with_kdtree_and_max_cargo_per_truck(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1, get_distance=get_distance) -> [ShortestRoute]:
 
-get_routes_local = _get_routes_with_sorted_order_and_max_cargo_per_truck
+    trucks_designated = {}
 
-get_routes_remote = partial(_get_routes_with_sorted_order_and_max_cargo_per_truck, get_distance=fetch_distance_from_provider)
+    for cargo in cargos:
+        closest_trucks_list = SortedDict()
+        cargo_truck_to_pick = 0
+
+        for truck in trucks:
+            cargo_distance_to_truck = get_distance(cargo.origin_location, truck.location)
+            closest_trucks_list[cargo_distance_to_truck] = truck
+        
+        distance, closest_truck = _designate_cargo_for_truck_from_list(cargo, trucks_designated, closest_trucks_list, cargo_truck_to_pick, max_cargos_per_truck)
+
+        yield ShortestRoute(cargo, closest_truck, distance)
+
+_get_routes_algorithm = _get_routes_with_kdtree_and_max_cargo_per_truck
+get_routes_local = _get_routes_algorithm
+get_routes_remote = partial(_get_routes_algorithm, get_distance=fetch_distance_from_provider)
