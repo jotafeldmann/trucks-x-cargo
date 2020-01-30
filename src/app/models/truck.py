@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from utils.geolocation import GeoPoint
+from utils.geolocation import GeoPoint, GeoList
 
 @dataclass
 class Truck:
@@ -15,5 +15,5 @@ class Truck:
         self.location = GeoPoint(latitude, longitude)
 
     def __hash__(self):
-        return hash((self.company, self.city, self.state, self.location.__hash__()))
+        return hash((self.company, self.city, self.state, hash(self.location)))
         
