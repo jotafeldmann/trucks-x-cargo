@@ -3,6 +3,7 @@
 import argparse
 from app.cargos.cargo import Cargo
 from app.trucks.truck import Truck
+from app.trucks.truck_list import TruckList
 from app.routes.routes import get_routes_local, get_routes_remote
 from utils.geolocation import PROVIDER_KEY_NAME
 from utils.input import get_trucks_data, get_cargos_data
@@ -13,7 +14,8 @@ def parse_arguments():
     return parser.parse_args()
 
 def load_data():
-    trucks = [Truck(**row) for row in get_trucks_data()]
+    trucks = TruckList()
+    [trucks.append(Truck(**row)) for row in get_trucks_data()]
     cargos = [Cargo(**row) for row in get_cargos_data()]
     return trucks, cargos
 
