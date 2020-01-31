@@ -7,27 +7,22 @@ from utils.geolocation import GeoPoint, GeoPointList
 @dataclass
 class TruckList(list):
     truck_list: [Truck]
-    _truck_locations_list: GeoPointList
+    geo_points_list: []
 
-    def __init__(self, iterable = []):
+    def __init__(self, iterable = [], geo = GeoPointList):
         self.truck_list = iterable
+        self.geo_points_list = []
+        self._geo = geo
         super().__init__(iterable)
     
-    def get_closest_truck_to_location(self, location: GeoPoint) -> (float, Truck):
-        index = self._truck_locations_list.query(location)
-        return self.truck_list[index]
+    def get_closest_trucks_to_location(self, location: GeoPoint) -> (float, Truck):
+        _ , indexes = self._geo(self.geo_points_list).query([location.latitude, location.longitude], len(self.truck_list))
+        return [self.truck_list[index] for index in indexes]
 
-    def append(self, value):
-        self.truck_list.append(value)
-        self._truck_locations_list = self._generate_geo_points(self.truck_list)
-        return super().append(value)
-    
-    @staticmethod
-    def _generate_geo_points(truck_list: [Truck]) -> GeoPointList:
-        if (len(truck_list)):
-            return GeoPointList([[truck.location.latitude, truck.location.longitude] for truck in truck_list ])
-        return GeoPointList([])
-
+    def append(self, truck: Truck):
+        self.truck_list.append(truck)
+        self.geo_points_list.append([truck.location.latitude, truck.location.longitude])
+        return super().append(truck)
     
 
         
