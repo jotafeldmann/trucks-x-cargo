@@ -45,8 +45,10 @@ def fetch_distance_from_provider(geo_point_1, geo_point_2):
 
 class GeoPointList(KDTree):
 
-    def query(self, args):
-        distance, index = super().query(args)
-        return _precision(distance), index
+    def query(self, location: GeoPoint):
+        latitude = location.latitude
+        longitude = location.longitude
+        _, index = super().query([ latitude, longitude ])
+        return index
 
 

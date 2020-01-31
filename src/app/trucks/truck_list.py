@@ -14,10 +14,8 @@ class TruckList(list):
         super().__init__(iterable)
     
     def get_closest_truck_to_location(self, location: GeoPoint) -> (float, Truck):
-        latitude = location.latitude
-        longitude = location.longitude
-        distance, index = self._truck_locations_list.query([ latitude, longitude ])
-        return distance, self.truck_list[index]
+        index = self._truck_locations_list.query(location)
+        return self.truck_list[index]
 
     def append(self, value):
         self.truck_list.append(value)

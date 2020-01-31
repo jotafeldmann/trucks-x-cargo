@@ -31,7 +31,8 @@ def _get_routes_with_kdtree_and_max_cargo_per_truck(trucks: TruckList, cargos: [
         closest_trucks_map = SortedDict()
         cargo_truck_to_pick = 0
 
-        distance, closest_truck = trucks.get_closest_truck_to_location(location=cargo.origin_location)
+        closest_truck = trucks.get_closest_truck_to_location(location=cargo.origin_location)
+        distance = get_distance(cargo.origin_location, closest_truck.location)
         closest_trucks_map[distance] = closest_truck
         
         # distance, closest_truck = designate_cargo_for_truck(cargo, closest_trucks_map, cargo_truck_to_pick, max_cargos_per_truck)
