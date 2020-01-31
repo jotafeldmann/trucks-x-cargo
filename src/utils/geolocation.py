@@ -43,7 +43,7 @@ def fetch_distance_from_provider(geo_point_1, geo_point_2):
         print('Using get_distance')
         return get_distance(geo_point_1, geo_point_2)
 
-class GeoList(KDTree):
+class GeoPointList(KDTree):
     pass
 
 

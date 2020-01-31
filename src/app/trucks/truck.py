@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from utils.geolocation import GeoPoint, GeoList
+from utils.geolocation import GeoPoint
 
 @dataclass
 class Truck:
