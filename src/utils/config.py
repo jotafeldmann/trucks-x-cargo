@@ -8,6 +8,7 @@ class Config:
     def __init__(self):
         parser = argparse.ArgumentParser("make run")
         parser.add_argument("--remote", required=False, help="Use Google Routes provider to calculate distances, please set env var {}".format(PROVIDER_KEY_NAME))
+        parser.add_argument("--algorithm", required=False, help="Use kdtree algorithm")
         self.options = parser.parse_args()
     
     def start(self):

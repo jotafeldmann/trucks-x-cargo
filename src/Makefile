@@ -10,3 +10,6 @@ run:
 
 run/remote:
 	python main.py --remote google
+
+run/kdtree:
+	python main.py --algorithm kdtree

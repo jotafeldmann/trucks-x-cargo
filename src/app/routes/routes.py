@@ -8,6 +8,7 @@ from app.trucks.truck import Truck
 from app.trucks.truck_list import TruckList
 from app.routes.shortest_route import ShortestRoute
 from utils.geolocation import get_distance, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS
+from utils.config import config
 
 def _get_routes_with_sorted_map(trucks: [Truck], cargos: [Cargo], max_cargos_per_truck=1, get_distance=get_distance) -> [ShortestRoute]:
 
@@ -37,4 +38,4 @@ def _get_routes_with_kdtree(trucks: TruckList, cargos: [Cargo], max_cargos_per_t
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
-get_routes = _get_routes_with_sorted_map
+get_routes = _get_routes_with_kdtree if config.options.algorithm else _get_routes_with_sorted_map
