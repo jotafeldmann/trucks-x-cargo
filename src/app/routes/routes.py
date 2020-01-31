@@ -2,8 +2,8 @@ import math
 from functools import partial
 from sortedcontainers import SortedDict
 
-from app.models.cargo import Cargo
-from app.models.truck import Truck
+from app.cargos.cargo import Cargo
+from app.trucks.truck import Truck
 from app.routes.shortest_route import ShortestRoute
 from utils.geolocation import get_distance, fetch_distance_from_provider, EARTH_MAX_DISTANCE_BETWEEN_TWO_POINTS, GeoList
 

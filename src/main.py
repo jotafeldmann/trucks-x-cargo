@@ -1,8 +1,8 @@
 #!/usr/bin/python3.8
 
 import argparse
-from app.models.cargo import Cargo
-from app.models.truck import Truck
+from app.cargos.cargo import Cargo
+from app.trucks.truck import Truck
 from app.routes.routes import get_routes_local, get_routes_remote
 from utils.geolocation import PROVIDER_KEY_NAME
 from utils.input import get_trucks_data, get_cargos_data
