@@ -17,8 +17,8 @@ def _get_routes_with_sorted_map(trucks: [Truck], cargos: [Cargo], max_cargos_per
     trucks_designated = {}
 
     for cargo in cargos:
-        closest_trucks_sorted = SortedDict()
         cargo_truck_to_pick = 0
+        closest_trucks_sorted = SortedDict()
 
         for truck in trucks:
             cargo_distance_to_truck = get_distance(cargo.origin_location, truck.location)
