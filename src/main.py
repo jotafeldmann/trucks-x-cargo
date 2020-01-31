@@ -4,6 +4,7 @@ from app.cargos.cargo import Cargo
 from app.trucks.truck import Truck
 from app.trucks.truck_list import TruckList
 from app.routes.routes import get_routes
+import time
 from utils.config import config
 from utils.input import get_trucks_data, get_cargos_data
 
@@ -20,10 +21,13 @@ def print_routes(routes):
     [[print(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)] for route in routes]
 
 def main():
-    config.start()
     trucks, cargos = load_data()
     routes = get_routes(trucks, cargos)
     print_routes(routes)
 
 if __name__ == "__main__":
+    start = time.time()
     main()
+    end = time.time()
+    if config.options.debug:
+        print("Time to complete: {} seconds".format(round(end - start, 4)))

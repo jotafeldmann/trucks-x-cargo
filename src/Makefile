@@ -1,3 +1,6 @@
+RUN_PYTHON := python main.py
+RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
+
 env:
 	pipenv shell
 
@@ -6,10 +9,10 @@ env/exit:
 
 .phony: run
 run:
-	python main.py
+	$(RUN_PYTHON_DEBUG)
 
 run/remote:
-	python main.py --remote google
+	$(RUN_PYTHON_DEBUG) --remote google
 
 run/kdtree:
-	python main.py --algorithm kdtree
+	$(RUN_PYTHON_DEBUG) --algorithm kdtree
