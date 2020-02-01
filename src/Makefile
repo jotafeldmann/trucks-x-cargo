@@ -1,5 +1,8 @@
 RUN_PYTHON := python main.py
-RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
+RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on]
+
+dev:
+	rerun --interactive --verbose "make lint"
 
 env:
 	pipenv shell
