@@ -2,6 +2,8 @@ import argparse
 
 PROVIDER_KEY_NAME = 'GOOGLE_API_KEY'
 
+config = None
+
 
 class Config:
     options: argparse.ArgumentParser
@@ -18,7 +20,8 @@ class Config:
         self.options = parser.parse_args()
 
     def start(self):
-        return self.options
+        config = Config()
+        return config
 
 
 config = Config()

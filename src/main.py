@@ -9,27 +9,28 @@ from utils.config import config
 from utils.input import get_trucks_data, get_cargos_data
 
 
-def load_data():
+def load_data(get_trucks_data=get_trucks_data, get_cargos_data=get_cargos_data):
     trucks = TruckList()
     [trucks.append(Truck(**row)) for row in get_trucks_data()]
     cargos = [Cargo(**row) for row in get_cargos_data()]
     return trucks, cargos
 
 
-def print_routes(routes):
-    print('Cargo, Truck Company, Distance (km)')
-    [[print(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)]
-     for route in routes]
+def output_routes(routes, output=print):
+    output('Cargo, Truck Company, Distance (km)')
+    return [[output(route.cargo.product + ', ', route.closest_truck.company + ', ', route.distance)]
+            for route in routes]
 
 
-def main():
+def main(load_data=load_data, get_routes=get_routes, output_routes=output_routes):
     trucks, cargos = load_data()
     routes = get_routes(trucks, cargos)
-    print_routes(routes)
+    return output_routes(routes)
 
 
 if __name__ == "__main__":
     start = time()
+    config.start()
     main()
     end = time()
     if config.options.debug:
