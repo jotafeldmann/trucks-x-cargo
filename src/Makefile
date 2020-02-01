@@ -24,3 +24,6 @@ run/remote:
 
 run/kdtree:
 	$(RUN_PYTHON_DEBUG) --algorithm kdtree
+
+test:
+	python -m pytest
