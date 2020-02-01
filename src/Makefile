@@ -7,6 +7,12 @@ env:
 env/exit:
 	echo "Type exit"
 
+lint:
+	flake8 .
+
+lint/fix:
+	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
+
 .phony: run
 run:
 	$(RUN_PYTHON_DEBUG)

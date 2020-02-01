@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from utils.geolocation import GeoPoint, get_distance
 
+
 @dataclass
 class Cargo:
     product: str
@@ -33,8 +34,6 @@ class Cargo:
 
     def __hash__(self):
         return hash((self.destination_location, self.origin_location))
-        
-        
+
     def get_route_total_length(self):
         return get_distance(self.origin_location, self.destination_location)
-        

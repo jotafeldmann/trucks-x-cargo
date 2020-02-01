@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from utils.geolocation import GeoPoint
 
+
 @dataclass
 class Truck:
     company: str
@@ -16,4 +17,3 @@ class Truck:
 
     def __hash__(self):
         return hash((self.company, self.city, self.state, hash(self.location)))
-        
