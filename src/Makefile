@@ -1,8 +1,10 @@
+LINT_COMMAND := flake8 .
 RUN_PYTHON := python main.py
 RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
+TESTS_COMMAND := python -m pytest
 
-dev:
-	rerun --interactive --verbose "make lint"
+dev/watch:
+	rerun --interactive --verbose "$(TESTS_COMMAND); $(LINT_COMMAND)"
 
 env:
 	pipenv shell
@@ -11,7 +13,7 @@ env/exit:
 	echo "Type exit"
 
 lint:
-	flake8 .
+	$(LINT_COMMAND)
 
 lint/fix:
 	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
@@ -25,5 +27,5 @@ run/remote:
 run/kdtree:
 	$(RUN_PYTHON_DEBUG) --algorithm kdtree
 
-test:
-	python -m pytest
+tests:
+	$(TESTS_COMMAND)
