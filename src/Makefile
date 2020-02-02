@@ -1,4 +1,5 @@
-RUN_PYTHON := python main.py
+ARGS := --cargos-csv=./../input/cargo.csv --trucks-csv=./../input/trucks.csv
+RUN_PYTHON := python main.py $(ARGS)
 RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
 
 csv:
