@@ -10,11 +10,11 @@ class TruckList(list):
     truck_list: [Truck]
     geo_points_list: []
 
-    def __init__(self, iterable=[], geo=GeoPointList, get_distance=get_distance):
-        self.truck_list = iterable
+    def __init__(self, geo=GeoPointList, get_distance=get_distance):
+        self.truck_list = []
         self.geo_points_list = []
         self._geo = geo
-        super().__init__(iterable)
+        super().__init__()
 
     def get_closest_trucks_to_location(self, location: GeoPoint) -> (float, Truck):
         _, indexes = self._geo(self.geo_points_list).query(
