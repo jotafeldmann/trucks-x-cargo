@@ -66,3 +66,12 @@ class TestDesignateCargoForTruck(TestCase):
         self.assertEqual(get_route_values(routes[4]), kdtree_expected_routes[4])
         self.assertEqual(get_route_values(routes[5]), kdtree_expected_routes[5])
         self.assertEqual(get_route_values(routes[6]), kdtree_expected_routes[6])
+
+    def test_default_sorted_map_has_lowerest_distances_than_kdtree(self):
+        sum_distances_sorted_map = sum([distance for _, _, distance in sorted_map_expected_routes])
+        self.assertEqual(sum_distances_sorted_map, 1364)
+
+        sum_distances_kdtree = sum([distance for _, _, distance in kdtree_expected_routes])
+        self.assertEqual(sum_distances_kdtree, 1446)
+
+        self.assertTrue(sum_distances_sorted_map < sum_distances_kdtree)
