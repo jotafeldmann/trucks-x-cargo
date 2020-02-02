@@ -1,15 +1,24 @@
 ARGS := --cargos-csv=./../input/cargo.csv --trucks-csv=./../input/trucks.csv
-RUN_PYTHON := python main.py $(ARGS)
-RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
+DOCKER_APP_NAME := trucksxcargo
+DOCKER_COMMAND := docker run $(DOCKER_APP_NAME)
+PYTHON_RUN := python main.py $(ARGS)
+PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
 
 csv:
-	$(RUN_PYTHON) > routes.csv
+	$(PYTHON_RUN) > routes.csv
 
 dev:
-	$(RUN_PYTHON_DEBUG)
+	$(PYTHON_RUN_DEBUG)
 
 dev/watch:
 	rerun --interactive --verbose "make tests; make lint"
+
+docker/run:
+	docker run $(DOCKER_APP_NAME)
+
+docker/build:
+	docker build --force-rm .
+	docker up
 
 env:
 	pipenv shell
@@ -27,16 +36,16 @@ lint/fix:
 	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
 
 run:
-	$(RUN_PYTHON)
+	$(PYTHON_RUN)
 
 run/maxcargo:
-	$(RUN_PYTHON_DEBUG) --max-cargo 2
+	$(PYTHON_RUN_DEBUG) --max-cargo 2
 
 run/remote:
-	$(RUN_PYTHON_DEBUG) --remote google
+	$(PYTHON_RUN_DEBUG) --remote google
 
 run/kdtree:
-	$(RUN_PYTHON_DEBUG) --algorithm kdtree
+	$(PYTHON_RUN_DEBUG) --algorithm kdtree
 
 .PHONY: tests
 tests:
