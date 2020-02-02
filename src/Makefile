@@ -6,6 +6,9 @@ TESTS_COMMAND := python -m pytest
 csv:
 	$(RUN_PYTHON) > routes.csv
 
+dev:
+	$(RUN_PYTHON_DEBUG)
+
 dev/watch:
 	rerun --interactive --verbose "make tests; make lint"
 
@@ -22,7 +25,7 @@ lint/fix:
 	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
 
 run:
-	$(RUN_PYTHON_DEBUG)
+	$(RUN_PYTHON)
 
 run/maxcargo:
 	$(RUN_PYTHON_DEBUG) --max-cargo 2
