@@ -51,7 +51,7 @@ class TestDesignateCargoForTruck(TestCase):
         trucks_list = TruckList()
         [trucks_list.append(Truck(**row)) for row in get_trucks_fixture()]
         routes = [route for route in _get_routes_kdtree(trucks_list, cargos_list)]
-        
+
         self.assertEqual(get_route_values(routes[0]),
                          ("Light bulbs", "Viking Products Of Austin Incustin", 190.0))
 
