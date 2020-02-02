@@ -3,10 +3,10 @@ from unittest import TestCase
 from app.cargos.cargo import Cargo
 from app.trucks.truck import Truck
 from app.routes.designate_cargo_for_truck import designate_cargo_for_truck
-from tests.utils.utils import cargos_fixture, trucks_fixture, get_closest_trucks_for_cargo
+from tests.utils.utils import get_cargos_fixture, get_trucks_fixture, get_closest_trucks_for_cargo
 
-trucks_list = [Truck(**row) for row in trucks_fixture]
-cargos = [Cargo(**row) for row in cargos_fixture]
+trucks_list = [Truck(**row) for row in get_trucks_fixture()]
+cargos = [Cargo(**row) for row in get_cargos_fixture()]
 closest_trucks = get_closest_trucks_for_cargo(trucks_list, cargos[0])
 
 

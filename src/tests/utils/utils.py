@@ -3,11 +3,23 @@ from sortedcontainers import SortedDict
 from utils.input import get_trucks_data, get_cargos_data
 from utils.geolocation import _get_distance_by_harvesine
 
-trucks_fixture_generator = get_trucks_data
-cargos_fixture_generator = get_cargos_data
 
-trucks_fixture = [row for row in trucks_fixture_generator()]
-cargos_fixture = [row for row in cargos_fixture_generator()]
+def get_trucks_fixture_generator():
+    return get_trucks_data()
+
+
+def get_cargos_fixture_generator():
+    return get_cargos_data()
+
+
+def get_trucks_fixture():
+    trucks_fixture = [row for row in get_trucks_fixture_generator()]
+    return trucks_fixture
+
+
+def get_cargos_fixture():
+    cargos_fixture = [row for row in get_cargos_fixture_generator()]
+    return cargos_fixture
 
 
 def get_closest_trucks_for_cargo(trucks_list, cargo, get_distance=_get_distance_by_harvesine):

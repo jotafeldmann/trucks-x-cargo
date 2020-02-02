@@ -3,7 +3,7 @@ from functools import partial
 from json import dumps
 
 from main import main, load_data, output_routes, output_columns_title
-from tests.utils.utils import cargos_fixture_generator, trucks_fixture_generator
+from tests.utils.utils import get_cargos_fixture_generator, get_trucks_fixture_generator
 
 
 def receive_return(a=None, b=None, c=None):
@@ -17,8 +17,8 @@ def receive_return_single(value):
 class TestMain(TestCase):
     def setUp(self):
         self.load_data = partial(load_data,
-                                 get_trucks_data=trucks_fixture_generator,
-                                 get_cargos_data=cargos_fixture_generator)
+                                 get_trucks_data=get_trucks_fixture_generator(),
+                                 get_cargos_data=get_cargos_fixture_generator())
         self.output_routes = output_routes
         self.output_columns_title = output_columns_title
 
