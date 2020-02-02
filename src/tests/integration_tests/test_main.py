@@ -17,8 +17,8 @@ def receive_return_single(value):
 class TestMain(TestCase):
     def setUp(self):
         self.load_data = partial(load_data,
-                                 get_trucks_data=get_trucks_fixture_generator(),
-                                 get_cargos_data=get_cargos_fixture_generator())
+                                 get_trucks_data=get_trucks_fixture_generator,
+                                 get_cargos_data=get_cargos_fixture_generator)
         self.output_routes = output_routes
         self.output_columns_title = output_columns_title
 
