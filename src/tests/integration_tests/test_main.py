@@ -14,7 +14,7 @@ def receive_return_single(value):
     return value
 
 
-class TestMain(TestCase):
+class TestIntegrationMain(TestCase):
     def setUp(self):
         self.load_data = partial(load_data,
                                  get_trucks_data=get_trucks_fixture_generator,
