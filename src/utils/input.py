@@ -1,8 +1,15 @@
 import csv
 
+from app.trucks.truck import Truck
+from app.cargos.cargo import Cargo
+
 from utils.config import config
+from utils.get_class_arguments import get_class_arguments_order
 
 FILES_PATH_DEFAULT = './../input'
+
+truck_fields_order = get_class_arguments_order(Truck)
+cargo_fields_order = get_class_arguments_order(Cargo)
 
 
 def _read_file(path, fields_order=None, skipHeader=True):
@@ -19,24 +26,13 @@ def _read_file(path, fields_order=None, skipHeader=True):
 _files_to_read = {
     'trucks': {
         'path': config.options.trucks_csv if config.options.trucks_csv else '{}/trucks.csv'.format(FILES_PATH_DEFAULT),
-        'fields_order': [
-            'company',
-            'city',
-            'state',
-            'latitude',
-            'longitude']},
+        'fields_order': truck_fields_order
+    },
     'cargos': {
         'path': config.options.cargos_csv if config.options.cargos_csv else '{}/cargo.csv'.format(FILES_PATH_DEFAULT),
-        'fields_order': [
-            'product',
-            'origin_city',
-            'origin_state',
-            'origin_latitude',
-            'origin_longitude',
-            'destination_city',
-            'destination_state',
-            'destination_latitude',
-            'destination_longitude']}}
+        'fields_order': cargo_fields_order
+    }
+}
 
 
 def get_trucks_data():
