@@ -62,13 +62,13 @@ class TestDesignateCargoForTruck(TestCase):
                          ("Apples", "Kjellberg'S Carpet Oneuffalo", 65.0))
 
         self.assertEqual(get_route_values(routes[3]),
-                         ("Wood", "Wisebuys Stores Incouverneur", 263.0))
+                         ("Wood", "Ibrahim Chimandalpharetta", 304.0))
 
         self.assertEqual(get_route_values(routes[4]),
                          ("Cell phones", "Paul J Krez Companyorton Grove", 65.0))
 
         self.assertEqual(get_route_values(routes[5]),
-                         ("Wood", "Gary Lee Wilcoxpencer", 348.0))
+                         ("Wood", "Fish-Bones Towingew York", 352.0))
 
         self.assertEqual(get_route_values(routes[6]),
-                         ("Oranges", "Fish-Bones Towingew York", 260.0))
+                         ("Oranges", "Edmon'S Unique Furniture & Stone Gallery Inc.Os Angeles", 297.0))
