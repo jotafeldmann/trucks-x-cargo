@@ -21,6 +21,9 @@ lint/fix:
 run:
 	$(RUN_PYTHON_DEBUG)
 
+run/maxcargo:
+	$(RUN_PYTHON_DEBUG) --max-cargo 2
+
 run/remote:
 	$(RUN_PYTHON_DEBUG) --remote google
 
