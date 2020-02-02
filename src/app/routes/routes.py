@@ -32,7 +32,8 @@ def _get_routes_sorted_map(
             closest_trucks_sorted[cargo_distance_to_truck] = truck
 
         distance, closest_truck = designate_cargo_for_truck(
-            cargo, closest_trucks_sorted, cargo_truck_to_pick, max_cargos_per_truck, trucks_designated_map=trucks_designated_map)
+            cargo, closest_trucks_sorted, cargo_truck_to_pick, max_cargos_per_truck,
+            trucks_designated_map=trucks_designated_map)
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
