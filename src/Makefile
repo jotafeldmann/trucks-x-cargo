@@ -1,7 +1,5 @@
-LINT_COMMAND := flake8 .
 RUN_PYTHON := python main.py
 RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
-TESTS_COMMAND := python -m pytest
 
 csv:
 	$(RUN_PYTHON) > routes.csv
@@ -19,7 +17,7 @@ env/exit:
 	echo "Type exit"
 
 lint:
-	$(LINT_COMMAND)
+	flake8 .
 
 lint/fix:
 	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
@@ -38,4 +36,4 @@ run/kdtree:
 
 .PHONY: tests
 tests:
-	$(TESTS_COMMAND)
+	python -m pytest
