@@ -3,6 +3,9 @@ RUN_PYTHON := python main.py
 RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
 TESTS_COMMAND := python -m pytest
 
+csv:
+	$(RUN_PYTHON) > routes.csv
+
 dev/watch:
 	rerun --interactive --verbose "make tests; make lint"
 
