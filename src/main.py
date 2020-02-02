@@ -17,8 +17,8 @@ def output_columns_title(output):
 
 def load_data(get_trucks_data=get_trucks_data, get_cargos_data=get_cargos_data):
     trucks = TruckList()
-    [trucks.append(Truck(**row)) for row in get_trucks_data]
-    cargos = [Cargo(**row) for row in get_cargos_data]
+    [trucks.append(Truck(**row)) for row in get_trucks_data()]
+    cargos = [Cargo(**row) for row in get_cargos_data()]
     return trucks, cargos
 
 
