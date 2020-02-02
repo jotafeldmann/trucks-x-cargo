@@ -8,7 +8,11 @@ from app.routes.shortest_route import ShortestRoute
 from utils.geolocation import get_distance
 from utils.config import config
 
-MAX_CARGOS_PER_TRUCK = 1
+MAX_CARGOS_PER_TRUCK = int(config.options.max_cargos) if config.options.max_cargos else 1
+
+
+def lambda_get_closest_truck(map, index):
+    return map[index]
 
 
 def _get_routes_sorted_map(
@@ -36,9 +40,6 @@ def _get_routes_kdtree(
         cargos: [Cargo],
         max_cargos_per_truck=MAX_CARGOS_PER_TRUCK,
         get_distance=get_distance) -> [ShortestRoute]:
-
-    def lambda_get_closest_truck(map, index):
-        return map[index]
 
     for cargo in cargos:
         cargo_truck_to_pick = 0

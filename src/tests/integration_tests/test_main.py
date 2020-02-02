@@ -3,7 +3,7 @@ from functools import partial
 from json import dumps
 
 from main import main, load_data, output_routes, output_columns_title
-from tests.fixtures.load_fixtures import cargos_fixture_generator, trucks_fixture_generator
+from tests.utils.utils import cargos_fixture_generator, trucks_fixture_generator
 
 
 def receive_return(a=None, b=None, c=None):

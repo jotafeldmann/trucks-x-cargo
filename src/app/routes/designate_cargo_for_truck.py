@@ -2,7 +2,7 @@ from sortedcontainers import SortedDict
 from app.trucks.truck import Truck
 
 
-def _get_closest_truck(closest_trucks_sorted: SortedDict, cargo_truck_to_pick):
+def _get_closest_truck_from_dict(closest_trucks_sorted: SortedDict, cargo_truck_to_pick):
     return closest_trucks_sorted.peekitem(cargo_truck_to_pick)
 
 
@@ -32,7 +32,7 @@ def designate_cargo_for_truck(
         cargo_truck_to_pick=0,
         max_cargos_per_truck=1,
         trucks_designated_map={},
-        lambda_get_closest_truck=_get_closest_truck) -> (float, Truck):
+        lambda_get_closest_truck=_get_closest_truck_from_dict) -> (float, Truck):
     distance, closest_truck = lambda_get_closest_truck(closest_trucks_sorted, cargo_truck_to_pick)
 
     if _is_truck_already_designated_for_max_cargos(

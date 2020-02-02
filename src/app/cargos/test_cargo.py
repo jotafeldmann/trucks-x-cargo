@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app.cargos.cargo import Cargo
-from tests.fixtures.load_fixtures import cargos_fixture
+from tests.utils.utils import cargos_fixture
 
 
 class TestCargoModel(TestCase):

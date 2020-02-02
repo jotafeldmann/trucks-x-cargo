@@ -12,6 +12,7 @@ class Config:
         parser = argparse.ArgumentParser("make run")
         parser.add_argument("--algorithm", required=False, help="Use kdtree algorithm")
         parser.add_argument("--debug", required=False, help="Use debug features")
+        parser.add_argument("--max-cargos", required=False, help="Max cargos per truck, default 1")
         parser.add_argument(
             "--remote",
             required=False,
