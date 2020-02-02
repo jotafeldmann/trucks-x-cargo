@@ -4,7 +4,7 @@ RUN_PYTHON_DEBUG := $(RUN_PYTHON) --debug on
 TESTS_COMMAND := python -m pytest
 
 dev/watch:
-	rerun --interactive --verbose "$(TESTS_COMMAND); $(LINT_COMMAND)"
+	rerun --interactive --verbose "make tests; make lint"
 
 env:
 	pipenv shell
@@ -27,5 +27,6 @@ run/remote:
 run/kdtree:
 	$(RUN_PYTHON_DEBUG) --algorithm kdtree
 
+.PHONY: tests
 tests:
 	$(TESTS_COMMAND)
