@@ -44,13 +44,15 @@ def _get_routes_kdtree(
         max_cargos_per_truck=MAX_CARGOS_PER_TRUCK,
         get_distance=get_distance) -> [ShortestRoute]:
 
+    trucks_designated_map = {}
+
     for cargo in cargos:
         cargo_truck_to_pick = 0
         closest_trucks_sorted = trucks.get_closest_trucks_to_location(
             location=cargo.origin_location)
         distance, closest_truck = designate_cargo_for_truck(
             cargo, closest_trucks_sorted, cargo_truck_to_pick, max_cargos_per_truck,
-            lambda_get_closest_truck=lambda_get_closest_truck)
+            lambda_get_closest_truck=lambda_get_closest_truck, trucks_designated_map=trucks_designated_map)
 
         yield ShortestRoute(cargo, closest_truck, distance)
 
