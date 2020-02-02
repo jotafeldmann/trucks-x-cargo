@@ -17,6 +17,9 @@ env:
 env/exit:
 	echo "Type exit"
 
+install:
+	pipenv install --system --dev --skip-lock
+
 lint:
 	flake8 .
 
