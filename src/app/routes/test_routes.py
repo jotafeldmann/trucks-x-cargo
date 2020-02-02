@@ -51,6 +51,24 @@ class TestDesignateCargoForTruck(TestCase):
         trucks_list = TruckList()
         [trucks_list.append(Truck(**row)) for row in get_trucks_fixture()]
         routes = [route for route in _get_routes_kdtree(trucks_list, cargos_list)]
-        result_routes = routes.__str__()
+        
+        self.assertEqual(get_route_values(routes[0]),
+                         ("Light bulbs", "Viking Products Of Austin Incustin", 190.0))
 
-        # self.assertEqual(result_routes, expected_routes)
+        self.assertEqual(get_route_values(routes[1]),
+                         ("Recyclables", "Ricardo Juradoacramento", 173.0))
+
+        self.assertEqual(get_route_values(routes[2]),
+                         ("Apples", "Kjellberg'S Carpet Oneuffalo", 65.0))
+
+        self.assertEqual(get_route_values(routes[3]),
+                         ("Wood", "Wisebuys Stores Incouverneur", 263.0))
+
+        self.assertEqual(get_route_values(routes[4]),
+                         ("Cell phones", "Paul J Krez Companyorton Grove", 65.0))
+
+        self.assertEqual(get_route_values(routes[5]),
+                         ("Wood", "Gary Lee Wilcoxpencer", 348.0))
+
+        self.assertEqual(get_route_values(routes[6]),
+                         ("Oranges", "Fish-Bones Towingew York", 260.0))
