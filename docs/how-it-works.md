@@ -17,7 +17,7 @@ This document explains how that solution was developed and how it can be explore
 make dev
 ```
 
-- More accurate, you can use the Google Routes remote provider (you must provide GOOGLE_API_KEY env var):
+- More accurate, you can use the [Google Routes](https://cloud.google.com/maps-platform/routes) remote provider (you must provide GOOGLE_API_KEY env var):
 ```bash
 make run/remote
 ```
