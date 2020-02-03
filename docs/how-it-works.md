@@ -9,6 +9,18 @@ This document explains how that solution was developed and how it can be explore
 
 ## Algorithms
 
+### Controlling the maximum cargos for each truck
+
+- The default max cargos for truck is 1
+```bash
+make dev
+```
+
+- We can try a max cargo option for truck = 2
+```bash
+make dev/maxcargo
+```
+
 ### Calculating distances
 
 - The default distance calculation use the [Harvesine formula](https://en.wikipedia.org/wiki/Haversine_formula)
