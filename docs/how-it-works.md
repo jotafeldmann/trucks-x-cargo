@@ -57,3 +57,6 @@ make dev
 ```bash
 make lint/fix
 ```
+
+## More options
+- For more options check the [Makefile](src/Makefile)
