@@ -28,4 +28,6 @@ make install
 make run
 ```
 
-For more options check the [Makefile](src/Makefile)
+## More details
+
+- For more details about the solution and options to run, please check [how-it-works](docs/how-it-works.md).
