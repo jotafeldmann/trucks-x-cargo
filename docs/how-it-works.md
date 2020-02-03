@@ -58,13 +58,21 @@ make dev
 make lint/fix
 ```
 
-### Code style
+## References
 
 I'm not Python senior, but I really appreciate Python's language.
 
 - I followed [The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
 - Read Luciano Ramalho's ["Fluent Python"](https://www.amazon.com.br/Fluent-Python-Luciano-Ramalho/dp/1491946008)
 - When I'm not applied the *pythonic way*, or in case of doubts, my guide is the  Uncle Bob's ["Clean Code"](https://www.amazon.com.br/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM)
+
+## What I can do with more time
+
+- Add a hash function for the locations: to improve even more the checking for the closest trucks
+- Add parallelization processing
+- Add algorithm to decide which cargo is best in case of an already designated truck
+- Add Docker: there's some code, but it's not totally functional
+- Plot maps for the inputs and the final solution
 
 ## More options
 - For more options check the [Makefile](src/Makefile)
