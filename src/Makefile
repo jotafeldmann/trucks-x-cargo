@@ -1,24 +1,26 @@
-ARGS := --cargos-csv=./../input/cargo.csv --trucks-csv=./../input/trucks.csv
+ARGS := --cargos-csv=./input/cargo.csv --trucks-csv=./input/trucks.csv
 DOCKER_APP_NAME := trucksxcargo
 DOCKER_COMMAND := docker run $(DOCKER_APP_NAME)
 PYTHON_RUN := python main.py $(ARGS)
 PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
 
+.PHONY: dev
+dev:
+	$(PYTHON_RUN_DEBUG)
+
 csv:
 	$(PYTHON_RUN) > routes.csv
 
-dev:
-	$(PYTHON_RUN_DEBUG)
+
 
 dev/watch:
 	rerun --interactive --verbose "make tests; make lint"
 
 docker/run:
-	docker run $(DOCKER_APP_NAME)
+	docker run -t --name $(DOCKER_APP_NAME) --rm $(DOCKER_APP_NAME) bash -c make dev
 
 docker/build:
-	docker build --force-rm .
-	docker up
+	docker build --force-rm  -t $(DOCKER_APP_NAME) .
 
 env:
 	pipenv shell
@@ -26,6 +28,7 @@ env:
 env/exit:
 	echo "Type exit"
 
+.PHONY: install
 install:
 	pipenv install --system --dev --skip-lock
 
