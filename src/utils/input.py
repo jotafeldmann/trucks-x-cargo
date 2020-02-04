@@ -6,7 +6,7 @@ from app.cargos.cargo import Cargo
 from utils.config import config
 from utils.get_class_arguments import get_class_arguments_order
 
-FILES_PATH_DEFAULT = './../input'
+FILES_PATH_DEFAULT = './input'
 
 truck_fields_order = get_class_arguments_order(Truck)
 cargo_fields_order = get_class_arguments_order(Cargo)
