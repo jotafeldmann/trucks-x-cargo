@@ -1,21 +1,24 @@
 ARGS := --cargos-csv=./input/cargo.csv --trucks-csv=./input/trucks.csv
 DOCKER_APP_NAME := trucksxcargo
-DOCKER_COMMAND := make docker/run
 PYTHON_RUN := python main.py $(ARGS)
 PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
+# To use Docker:
+# export USE_DOCKER=true
+USE_DOCKER := $(USE_DOCKER)
+
+ifeq ($(USE_DOCKER), true)
+	DOCKER_COMMAND := docker run -t --name $(DOCKER_APP_NAME) --rm $(DOCKER_APP_NAME)
+endif
 
 .PHONY: dev
 dev:
-	$(PYTHON_RUN_DEBUG)
+	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG)
 
 csv:
-	$(PYTHON_RUN) > routes.csv
+	$(DOCKER_COMMAND) $(PYTHON_RUN) > routes.csv
 
 dev/watch:
-	rerun --interactive --verbose "make tests; make lint"
-
-docker/run:
-	docker run -t --name $(DOCKER_APP_NAME) --rm $(DOCKER_APP_NAME) bash -c make dev
+	$(DOCKER_COMMAND) rerun --interactive --verbose "make tests; make lint"
 
 docker/build:
 	docker build --force-rm  -t $(DOCKER_APP_NAME) .
@@ -28,26 +31,26 @@ env/exit:
 
 .PHONY: install
 install:
-	pipenv install --system --dev --skip-lock
+	$(DOCKER_COMMAND) pipenv install --system --dev --skip-lock
 
 lint:
-	flake8 .
+	$(DOCKER_COMMAND) flake8 .
 
 lint/fix:
-	autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
+	$(DOCKER_COMMAND) autopep8 --global-config .flake8 --in-place --aggressive --aggressive --recursive .
 
 run:
-	$(PYTHON_RUN)
+	$(DOCKER_COMMAND) $(PYTHON_RUN)
 
 run/maxcargo:
-	$(PYTHON_RUN_DEBUG) --max-cargo 2
+	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG) --max-cargo 2
 
 run/remote:
-	$(PYTHON_RUN_DEBUG) --remote google
+	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG) --remote google
 
 run/kdtree:
-	$(PYTHON_RUN_DEBUG) --algorithm kdtree
+	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG) --algorithm kdtree
 
 .PHONY: tests
 tests:
-	python -m pytest
+	$(DOCKER_COMMAND) python -m pytest
