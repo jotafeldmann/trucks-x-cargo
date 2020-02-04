@@ -21,15 +21,18 @@ else
 	unexport DOCKER_COMMAND
 endif
 
-.PHONY: dev
-dev:
-	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG)
+default:
+	make run
 
 csv:
 	$(DOCKER_COMMAND) $(PYTHON_RUN) > routes.csv
 
 dev/watch:
 	$(DOCKER_COMMAND) rerun --interactive --verbose "$(TEST_COMMAND); $(LINT_COMMAND)"
+
+.PHONY: dev
+dev:
+	$(DOCKER_COMMAND) $(PYTHON_RUN_DEBUG)
 
 docker/build:
 	docker build --force-rm  -t $(DOCKER_APP_NAME) .
