@@ -65,8 +65,3 @@ run/kdtree:
 .PHONY: tests
 tests:
 	$(DOCKER_COMMAND) python -m pytest
-
-.PHONY: print
-print:
-	# echo "USE_DOCKER=true" >> .env
-	echo $M
