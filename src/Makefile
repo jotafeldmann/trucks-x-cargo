@@ -1,11 +1,14 @@
+include .env
 ARGS := --cargos-csv=./input/cargo.csv --trucks-csv=./input/trucks.csv
 DOCKER_APP_NAME := trucksxcargo
 PYTHON_RUN := python main.py $(ARGS)
 PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
 # To use Docker:
 # export USE_DOCKER=true
+# or add USE_DOCKER=true from .env
 # To stop:
 # export -n USE_DOCKER
+# or remove USE_DOCKER=true from .env
 USE_DOCKER := $(USE_DOCKER)
 
 ifeq ($(USE_DOCKER), true)
@@ -24,6 +27,12 @@ dev/watch:
 
 docker/build:
 	docker build --force-rm  -t $(DOCKER_APP_NAME) .
+
+docker/on:
+	echo "USE_DOCKER=true" > .env
+
+docker/off:
+	echo "USE_DOCKER=false" > .env
 
 env:
 	pipenv shell
@@ -56,3 +65,8 @@ run/kdtree:
 .PHONY: tests
 tests:
 	$(DOCKER_COMMAND) python -m pytest
+
+.PHONY: print
+print:
+	# echo "USE_DOCKER=true" >> .env
+	echo $M
