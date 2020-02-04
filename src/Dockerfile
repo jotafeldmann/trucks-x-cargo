@@ -1,4 +1,4 @@
-FROM python:3.8.1-buster AS base
+FROM python:3.8.1-buster
 
 WORKDIR trucksxcargo
 
