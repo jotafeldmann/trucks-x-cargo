@@ -1,6 +1,6 @@
 ARGS := --cargos-csv=./input/cargo.csv --trucks-csv=./input/trucks.csv
 DOCKER_APP_NAME := trucksxcargo
-DOCKER_COMMAND := docker run $(DOCKER_APP_NAME)
+DOCKER_COMMAND := make docker/run
 PYTHON_RUN := python main.py $(ARGS)
 PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
 
@@ -10,8 +10,6 @@ dev:
 
 csv:
 	$(PYTHON_RUN) > routes.csv
-
-
 
 dev/watch:
 	rerun --interactive --verbose "make tests; make lint"
