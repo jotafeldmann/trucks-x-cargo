@@ -4,6 +4,8 @@ PYTHON_RUN := python main.py $(ARGS)
 PYTHON_RUN_DEBUG := $(PYTHON_RUN) --debug on
 # To use Docker:
 # export USE_DOCKER=true
+# To stop:
+# export -n USE_DOCKER
 USE_DOCKER := $(USE_DOCKER)
 
 ifeq ($(USE_DOCKER), true)
