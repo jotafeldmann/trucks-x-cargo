@@ -60,7 +60,7 @@ make run/kdtree
 make dev/watch
 ```
 
-- Run dev mode (with performance chekc)
+- Run dev mode (with performance check)
 ```bash
 make dev
 ```
