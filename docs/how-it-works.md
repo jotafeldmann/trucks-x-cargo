@@ -76,7 +76,7 @@ I'm not Python senior, but I really appreciate Python's language.
 
 - I followed [The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
 - Read Luciano Ramalho's ["Fluent Python"](https://www.amazon.com.br/Fluent-Python-Luciano-Ramalho/dp/1491946008)
-- When I'm not applied the *pythonic way*, or in case of doubts, my guide is the  Uncle Bob's ["Clean Code"](https://www.amazon.com.br/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM)
+- Beyond the *pythonic way*, or in case of doubts, my guide is the  Uncle Bob's ["Clean Code"](https://www.amazon.com.br/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM)
 
 ## What I can do with more time
 
