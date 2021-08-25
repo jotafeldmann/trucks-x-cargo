@@ -39,7 +39,7 @@ make run/remote
 
 Five different algorithms was developed, with 2 remaining:
 
-- Iteration O log(n<sup>2</sup>) + sorted dictionary
+- Iteration with sorted dictionary
 The classic cargos x trucks iteration (sorted dictionary)
 
 ```bash
