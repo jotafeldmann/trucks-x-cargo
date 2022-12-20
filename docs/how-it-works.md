@@ -37,7 +37,7 @@ make run/remote
 
 ### Designating trucks for cargos
 
-Five different algorithms was developed, with 2 remaining:
+Five different algorithms were developed, with 2 remaining:
 
 - Iteration with sorted dictionary
 The classic cargos x trucks iteration (sorted dictionary)
